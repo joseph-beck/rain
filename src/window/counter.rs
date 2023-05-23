@@ -1,34 +1,32 @@
-use iced::widget::{button, column, text, Column};
+use iced::widget::{button, column, text};
+use iced::{Alignment, Element, Sandbox, Settings};
 
-pub struct Counter {
-    // The counter value
+pub fn run() -> iced::Result {
+    Counter::run(Settings::default())
+}
+
+struct Counter {
     value: i32,
 }
 
 #[derive(Debug, Clone, Copy)]
-pub enum Message {
+enum Message {
     IncrementPressed,
     DecrementPressed,
 }
 
-impl Counter {
-    pub fn view(&self) -> Column<Message> {
-        // We use a column: a simple vertical layout
-        column![
-            // The increment button. We tell it to produce an
-            // `IncrementPressed` message when pressed
-            button("+").on_press(Message::IncrementPressed),
+impl Sandbox for Counter {
+    type Message = Message;
 
-            // We show the value of the counter here
-            text(self.value).size(50),
-
-            // The decrement button. We tell it to produce a
-            // `DecrementPressed` message when pressed
-            button("-").on_press(Message::DecrementPressed),
-        ]
+    fn new() -> Self {
+        Self { value: 0 }
     }
 
-    pub fn update(&mut self, message: Message) {
+    fn title(&self) -> String {
+        String::from("Counter - Iced")
+    }
+
+    fn update(&mut self, message: Message) {
         match message {
             Message::IncrementPressed => {
                 self.value += 1;
@@ -37,5 +35,16 @@ impl Counter {
                 self.value -= 1;
             }
         }
+    }
+
+    fn view(&self) -> Element<Message> {
+        column![
+            button("Increment").on_press(Message::IncrementPressed),
+            text(self.value).size(50),
+            button("Decrement").on_press(Message::DecrementPressed)
+        ]
+        .padding(20)
+        .align_items(Alignment::Center)
+        .into()
     }
 }

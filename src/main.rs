@@ -1,4 +1,6 @@
+use crate::window::counter;
+
 mod window;
 fn main() {
-    window::run();
+    let _ = counter::run();
 }

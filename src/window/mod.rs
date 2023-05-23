@@ -1,4 +1,1 @@
-mod counter;
-
-pub fn run() {
-}
+pub(crate) mod counter;
