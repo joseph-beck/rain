@@ -4,4 +4,4 @@ a desktop app for listening to ambient noise.
 
 ## dependencies
 
-- lidadwaita
+- iced
