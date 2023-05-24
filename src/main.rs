@@ -1,6 +1,6 @@
-use crate::window::counter;
+use crate::window::player;
 
 mod window;
 fn main() {
-    let _ = counter::run();
+    let _ = player::run();
 }
