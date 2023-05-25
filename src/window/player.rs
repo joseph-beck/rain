@@ -1,26 +1,34 @@
 use std::fmt;
 use iced::{
-    widget::{button, column, text},
+    widget::{button, column, text, container},
     {Alignment, Element, Sandbox, Settings},
 };
 
 pub fn run() -> iced::Result {
-    Player::run(Settings::default())
+    App::run(Settings::default())
 }
 
-struct Player {
-    state: State,
+struct App {
+    state: PlayerState,
 }
 
 #[derive(Debug, PartialEq, Copy, Clone)]
-enum State {
+enum PlayerState {
     Paused,
     Playing,
 }
 
-impl fmt::Display for State {
+impl fmt::Display for PlayerState {
     fn fmt(&self, f: &mut fmt::Formatter) -> Result<(), std::fmt::Error> {
         write!(f, "{:?}", self)
+    }
+}
+
+fn change_player_state(state: &mut PlayerState) {
+    if *state == PlayerState::Paused {
+        *state = PlayerState::Playing;
+    } else {
+        *state = PlayerState::Paused;
     }
 }
 
@@ -29,11 +37,11 @@ enum Message {
     PlayPause,
 }
 
-impl Sandbox for Player {
+impl Sandbox for App {
     type Message = Message;
 
     fn new() -> Self {
-        Self { state: State::Paused }
+        Self { state: PlayerState::Paused }
     }
 
     fn title(&self) -> String {
@@ -42,22 +50,20 @@ impl Sandbox for Player {
 
     fn update(&mut self, message: Self::Message) {
         match message {
-            Message::PlayPause => {
-                if self.state == State::Paused {
-                    self.state = State::Playing;
-                } else {
-                    self.state = State::Paused;
-                }
-            }
+            Message::PlayPause => { change_player_state(&mut self.state); }
         }
     }
 
     fn view(&self) -> Element<'_, Self::Message> {
-        column![
-            button("⏯").on_press(Message::PlayPause),
+        let change_button = column![
+            button("change state").on_press(Message::PlayPause),
             text(self.state).size(50),
         ]
-        .align_items(Alignment::Center)
-        .into()
+            .align_items(Alignment::Center);
+
+        container(change_button)
+            .center_x()
+            .center_y()
+            .into()
     }
 }
