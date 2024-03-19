@@ -2307,22 +2307,6 @@ dependencies = [
 ]
 
 [[package]]
-name = "rain-cli"
-version = "0.1.0"
-
-[[package]]
-name = "rain-core"
-version = "0.1.0"
-
-[[package]]
-name = "rain-gui"
-version = "0.1.0"
-
-[[package]]
-name = "rain-web"
-version = "0.1.0"
-
-[[package]]
 name = "rand"
 version = "0.8.5"
 source = "registry+https://github.com/rust-lang/crates.io-index"

@@ -1,8 +1,8 @@
-[package]
-name = "rain"
-version = "0.1.0"
-edition = "2021"
-
-[dependencies]
-iced = "0.9.0"
-iced_audio = "0.11.0"
+[workspace]
+members = [
+    "rain",
+    "rain-cli",
+    "rain-core",
+    "rain-gui",
+    "rain-web",
+]
