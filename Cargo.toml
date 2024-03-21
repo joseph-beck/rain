@@ -2,6 +2,5 @@
 members = [
     "rain-cli",
     "rain-core",
-    "rain-gui",
-    "rain-web",
+    "rain-gui"
 ]
