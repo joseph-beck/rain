@@ -16,7 +16,27 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
-    - name: Build
-      run: cargo build --verbose
-    - name: Run tests
-      run: cargo test --verbose
+    - name: Build CLI
+      run: |
+        cd rain-cli
+        cargo build --verbose
+    - name: Run CLI tests
+      run: |
+        cd rain-cli
+        cargo test --verbose
+    - name: Build Core
+      run: |
+        cd rain-core
+        cargo build --verbose
+    - name: Run Core tests
+      run: |
+        cd rain-core
+        cargo test --verbose
+    - name: Build GUI
+      run: |
+        cd rain-gui
+        cargo build --verbose
+    - name: Run GUI tests
+      run: |
+        cd rain-gui
+        cargo test --verbose
