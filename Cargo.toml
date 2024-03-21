@@ -6,3 +6,4 @@ members = [
     "rain-gui",
     "rain-web",
 ]
+resolver = "2"
