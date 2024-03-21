@@ -1,6 +1,5 @@
 [workspace]
 members = [
-    "rain",
     "rain-cli",
     "rain-core",
     "rain-gui",
