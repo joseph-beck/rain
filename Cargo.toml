@@ -2,7 +2,7 @@
 members = [
     "rain-cli",
     "rain-core",
-    "rain-gui"
+    "rain-gui/src-tauri"
 ]
 
 [workspace.dependencies]
